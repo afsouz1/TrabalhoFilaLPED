@@ -1,6 +1,5 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
+
 
 public class Atv3FilasIntercaladas {
     Scanner in = new Scanner(System.in);
@@ -26,6 +25,7 @@ public class Atv3FilasIntercaladas {
                 }
             } catch (Exception e) {
                 System.out.println("Erro::Entrada inválida");
+                insert = 1;
                 in.next(); // Limpa a entrada inválida
             }
         } while (insert != 0);
@@ -42,6 +42,7 @@ public class Atv3FilasIntercaladas {
                 }
             } catch (Exception e) {
                 System.out.println("Erro::Entrada inválida");
+                insert = 1;
                 in.next();
             }
         } while (insert != 0);
@@ -58,34 +59,51 @@ public class Atv3FilasIntercaladas {
     }
 
     public void printQueue() {
-        if (numberA2.isEmpty() && numberB2.isEmpty()) {
-            System.out.println("\nFilas vazias.");
-        } else {
-            System.out.println("\nFilas atuais:");
-            System.out.println("Fila A: " + numberA2);
-            System.out.println("Fila B: " + numberB2);
-            System.out.println("Fila C (Intercalada): " + numberC);
-        }
+        boolean c = true;
+
+        do{
+            if (numberA2.isEmpty() && numberB2.isEmpty()) {
+                // in.next();
+                System.out.println("\nFilas vazias.");
+                c = false;
+            } else {
+                System.out.println("\nFilas atuais:");
+                System.out.println("Fila A: " + numberA2);
+                System.out.println("Fila B: " + numberB2);
+                System.out.println("Fila C (Intercalada): " + numberC);
+                c = false;
+            }
+        }while(c);
     }
 
     public void deleteQueue() {
-        if (numberA2.isEmpty() && numberB2.isEmpty()) {
-            System.out.println("\nFilas vazias.");
-        } else {
-            System.out.print("\nConfirma apagar todos os dados das filas? y/n: ");
-            String opt = in.next();
-
-            if (opt.equalsIgnoreCase("y")) {
-                numberA1.clear();
-                numberA2.clear();
-                numberB1.clear();
-                numberB2.clear();
-                numberC.clear();
-                System.out.println("Filas apagadas.");
+        Boolean c = true;
+        do{
+            if (numberA2.isEmpty() && numberB2.isEmpty()) {
+                System.out.println("\nFilas vazias.");
+                c = false;
             } else {
-                System.out.println("Filas não apagadas.");
+                System.out.print("\nConfirma apagar todos os dados das filas? y/n: ");
+                String opt = in.next();
+    
+                if (opt.equalsIgnoreCase("y")) {
+                    numberA1.clear();
+                    numberA2.clear();
+                    numberB1.clear();
+                    numberB2.clear();
+                    numberC.clear();
+                    System.out.println("Filas apagadas.");
+                    c = false;
+                } else if (opt.equalsIgnoreCase("n")){
+                    System.out.println("Filas não apagadas.");
+                    c = false;
+                } else{
+                    System.out.println("Erro: Entrada inválida.");
+                    c = true;
+                }
             }
-        }
+        }while(c);
+        
     }
 
     public int mainMenu() {
